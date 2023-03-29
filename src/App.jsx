@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './App.css'
+import SingleCard from './components/SingleCard';
 
 const cardImages = [
   {"src": "/img/1Ace.png"},
@@ -29,9 +31,15 @@ const App = () => {
       <div className='text-center m-5'>
          <h1 className='p-3'>Memory Game</h1>
          <button  type="button" className="btn btn-outline-danger btn-lg" onClick={shuffleCards}>Start Game</button>
+         <div className="card-grid">
+          {cards.map(card => (
+            <SingleCard key={card.id} card={card}/>
+          ))}
+         </div>
       </div>
     </div>
   );
 };
 
 export default App;
+

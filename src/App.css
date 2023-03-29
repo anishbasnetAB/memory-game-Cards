@@ -1,3 +1,18 @@
 .App{
   background-color: #12215b;
 }
+
+.card-grid{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.card{
+  background-color: #12215b;
+}
+
+.img-height{
+  height: 220px;
+}
