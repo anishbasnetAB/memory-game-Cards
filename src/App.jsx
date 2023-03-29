@@ -19,6 +19,7 @@ const App = () => {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disabled, setDisabled]= useState(false);
 
   //shuffle cards
   const shuffleCards = () => {
@@ -37,15 +38,13 @@ const App = () => {
   //compare 2 selected cards 
   useEffect(()=>{
     if(choiceOne && choiceTwo){
+      setDisabled(true)
       if(choiceOne.src==choiceTwo.src){
         setCards(prevCards => {
           return prevCards.map(card => {
             if (card.src === choiceOne.src){
-              return {
-                ...card, matched:true
-              }
-            }
-            else {
+              return { ...card, matched:true}
+            }else {
               return card
             }
           })
@@ -53,8 +52,7 @@ const App = () => {
         resetTurn()
       }
       else{
-        
-        resetTurn()
+        setTimeout(()=>resetTurn(),1000)
       }
     }
   },[choiceOne,choiceTwo])
@@ -66,6 +64,7 @@ const App = () => {
     setChoiceOne(null)
     setChoiceTwo(null)
     setTurns(prevTruns => prevTruns+1)
+    setDisabled(false)
   }
 
   return (
@@ -75,7 +74,7 @@ const App = () => {
          <button  type="button" className="btn btn-outline-danger btn-lg mb-4" onClick={shuffleCards}>Start Game</button>
          <div className="card-grid ">
           {cards.map(card => (
-            <SingleCard key={card.id} card={card} handleChoice={handleChoice} flipped={card === choiceOne || card === choiceTwo || card.matched}/>
+            <SingleCard key={card.id} card={card} handleChoice={handleChoice} flipped={card === choiceOne || card === choiceTwo || card.matched} disabled = {disabled}/>
           ))}
          </div>
       </div>
