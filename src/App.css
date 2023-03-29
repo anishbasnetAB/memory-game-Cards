@@ -3,12 +3,6 @@
 }
 
 .card-grid{
-  /* margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr ;
-  grid-gap: 10px;
-  justify-content: center;
-  align-items: center; */
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -16,7 +10,7 @@
   justify-content: center;
   align-items: center;
   width: fit-content; /* adjust width of grid to content */
-  margin: 0 auto; /* horizontally center grid */
+  margin: 0 auto; 
 }
 
 .card{
