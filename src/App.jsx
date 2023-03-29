@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import './App.css'
 import SingleCard from './components/SingleCard';
 
@@ -16,6 +17,8 @@ const App = () => {
 
   const [cards , setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
 
   //shuffle cards
   const shuffleCards = () => {
@@ -25,15 +28,41 @@ const App = () => {
     setCards(shuffledCards)
     setTurns(0)
   }
-  console.log(cards, turns)
+
+  //handle Choice
+  const handleChoice = (card) =>{
+    choiceOne ? setChoiceTwo(card):setChoiceOne(card)
+  }
+
+  //compare 2 selected cards 
+  useEffect(()=>{
+    if(choiceOne && choiceTwo){
+      if(choiceOne.src==choiceTwo.src){
+        console.log('Matches')
+        resetTurn()
+      }
+      else{
+        console.log("NOT match")
+        resetTurn()
+      }
+    }
+  },[choiceOne,choiceTwo])
+
+  //reset Choice and increase turn
+  const resetTurn = () => {
+    setChoiceOne(null)
+    setChoiceTwo(null)
+    setTurns(prevTruns => prevTruns+1)
+  }
+
   return (
-    <div className='appBg'>
-      <div className='text-center m-5'>
-         <h1 className='p-3'>Memory Game</h1>
-         <button  type="button" className="btn btn-outline-danger btn-lg" onClick={shuffleCards}>Start Game</button>
-         <div className="card-grid">
+    <div className='appBg '>
+      <div className='text-center m-2'>
+         <h1 className='p-2'>Memory Game</h1>
+         <button  type="button" className="btn btn-outline-danger btn-lg mb-4" onClick={shuffleCards}>Start Game</button>
+         <div className="card-grid ">
           {cards.map(card => (
-            <SingleCard key={card.id} card={card}/>
+            <SingleCard key={card.id} card={card} handleChoice={handleChoice}/>
           ))}
          </div>
       </div>

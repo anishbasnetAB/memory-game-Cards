@@ -1,12 +1,17 @@
 import React from 'react'
 import './SingleCard.css'
 
-const SingleCard = ({card}) => {
+const SingleCard = ({card, handleChoice}) => {
+
+    const handleClick=()=>{
+        handleChoice(card)
+    }
+
   return (
     <div className='card' >
         <div>
         <img className="front "   src={card.src} alt="card front side"/>
-        <img className='back'  src='/img/card-back.png' alt="card back side"/>
+        <img className='back'  src='/img/card-back.png' onClick={handleClick} alt="card back side"/>
         </div>
     </div>
   )

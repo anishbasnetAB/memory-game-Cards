@@ -3,16 +3,23 @@
 }
 
 .card-grid{
+  /* margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  grid-gap: 10px;
+  justify-content: center;
+  align-items: center; */
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px; /* reduce gap between items */
+  justify-content: center;
+  align-items: center;
+  width: fit-content; /* adjust width of grid to content */
+  margin: 0 auto; /* horizontally center grid */
 }
 
 .card{
   background-color: #12215b;
 }
 
-.img-height{
-  height: 220px;
-}
