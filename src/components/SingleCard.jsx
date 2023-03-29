@@ -6,9 +6,7 @@ const SingleCard = ({card, handleChoice, flipped,disabled}) => {
     const handleClick=()=>{
         if(!disabled){
             handleChoice(card)
-        }
-        
-        
+        }    
     }
 
   return (
